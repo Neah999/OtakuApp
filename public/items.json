@@ -1,0 +1,201 @@
+[
+  {
+    "name": "ハーネス（アップ）",
+    "count": 111,
+    "imageUrl": "/items/harness_up.png",
+    "icon": "FaHeart",
+    "acquisitionDate": "2024-03-01",
+    "explain": "推しの限定グッズです",
+    "prise": 1500
+  },
+  {
+    "name": "キョンシー",
+    "count": 65,
+    "imageUrl": "/items/kyonshi.png",
+    "icon": "FaCircle",
+    "acquisitionDate": "2023-12-15",
+    "explain": "ハロウィンイベント限定品",
+    "prise": 800,
+    "updatedAt": "2025-03-30T15:40:02.981Z"
+  },
+  {
+    "name": "魔法少女ステッキ",
+    "count": 32,
+    "imageUrl": "/items/magic_stick.png",
+    "icon": "FaStar",
+    "acquisitionDate": "2024-01-10",
+    "explain": "魔法少女フェア購入特典",
+    "prise": 1200
+  },
+  {
+    "name": "メカ耳ヘッドホン",
+    "count": 89,
+    "imageUrl": "/items/mecha_headphones.png",
+    "icon": "FaHeadphones",
+    "acquisitionDate": "2024-02-20",
+    "explain": "音楽フェスの物販",
+    "prise": 3000
+  },
+  {
+    "name": "ちびキャラキーホルダー",
+    "count": 18,
+    "imageUrl": "/items/chibi_keychain.png",
+    "icon": "FaKey",
+    "acquisitionDate": "2023-11-05",
+    "explain": "ランダム封入品",
+    "prise": 600
+  },
+  {
+    "name": "限定アクスタ",
+    "count": 71,
+    "imageUrl": "/items/acrylic_stand.png",
+    "icon": "FaGem",
+    "acquisitionDate": "2024-04-01",
+    "explain": "アニメイト限定",
+    "prise": 1800
+  },
+  {
+    "name": "サイン入りポスター",
+    "count": 5,
+    "imageUrl": "/items/signed_poster.png",
+    "icon": "FaPenFancy",
+    "acquisitionDate": "2023-09-21",
+    "explain": "抽選キャンペーン当選品",
+    "prise": 0
+  },
+  {
+    "name": "アイドル缶バッジ",
+    "count": 132,
+    "imageUrl": "/items/idol_badge.png",
+    "icon": "FaCircle",
+    "acquisitionDate": "2023-10-12",
+    "explain": "ガチャで獲得",
+    "prise": 400
+  },
+  {
+    "name": "ぬいぐるみ（Sサイズ）",
+    "count": 23,
+    "imageUrl": "/items/plush_small.png",
+    "icon": "FaSmile",
+    "acquisitionDate": "2024-02-01",
+    "explain": "景品交換",
+    "prise": 1000
+  },
+  {
+    "name": "ぬいぐるみ（Lサイズ）",
+    "count": 12,
+    "imageUrl": "/items/plush_large.png",
+    "icon": "FaSmile",
+    "acquisitionDate": "2024-02-01",
+    "explain": "クレーンゲーム戦利品",
+    "prise": 0
+  },
+  {
+    "name": "ブロマイド写真",
+    "count": 76,
+    "imageUrl": "/items/bromide.png",
+    "icon": "FaImage",
+    "acquisitionDate": "2024-01-01",
+    "explain": "特典セット封入",
+    "prise": 500
+  },
+  {
+    "name": "コスプレ衣装",
+    "count": 3,
+    "imageUrl": "/items/cosplay_costume.png",
+    "icon": "FaTshirt",
+    "acquisitionDate": "2023-08-30",
+    "explain": "公式通販購入品",
+    "prise": 9000
+  },
+  {
+    "name": "アニメDVDセット",
+    "count": 27,
+    "imageUrl": "/items/anime_dvd.png",
+    "icon": "FaCompactDisc",
+    "acquisitionDate": "2023-06-10",
+    "explain": "BOX購入特典付き",
+    "prise": 12000
+  },
+  {
+    "name": "初回限定CD",
+    "count": 40,
+    "imageUrl": "/items/limited_cd.png",
+    "icon": "FaMusic",
+    "acquisitionDate": "2023-07-01",
+    "explain": "初回盤購入特典あり",
+    "prise": 3200
+  },
+  {
+    "name": "タペストリー",
+    "count": 11,
+    "imageUrl": "/items/tapestry.png",
+    "icon": "FaScroll",
+    "acquisitionDate": "2023-12-01",
+    "explain": "展示会限定グッズ",
+    "prise": 2500
+  },
+  {
+    "name": "オリジナルTシャツ",
+    "count": 54,
+    "imageUrl": "/items/tshirt.png",
+    "icon": "FaTshirt",
+    "acquisitionDate": "2023-07-15",
+    "explain": "ライブグッズ",
+    "prise": 3500
+  },
+  {
+    "name": "抱き枕カバー",
+    "count": 19,
+    "imageUrl": "/items/dakimakura.png",
+    "icon": "FaBed",
+    "acquisitionDate": "2024-01-20",
+    "explain": "通販限定アイテム",
+    "prise": 5800
+  },
+  {
+    "name": "ファンクラブ会報",
+    "count": 35,
+    "imageUrl": "/items/fanclub_news.png",
+    "icon": "FaNewspaper",
+    "acquisitionDate": "2023-10-01",
+    "explain": "年4回発行",
+    "prise": 0
+  },
+  {
+    "name": "クリアファイルセット",
+    "count": 50,
+    "imageUrl": "/items/clearfile_set.png",
+    "icon": "FaFolder",
+    "acquisitionDate": "2024-03-10",
+    "explain": "フェア購入特典",
+    "prise": 700
+  },
+  {
+    "name": "公式パンフレット",
+    "count": 8,
+    "imageUrl": "/items/pamphlet.png",
+    "icon": "FaBook",
+    "acquisitionDate": "2024-04-01",
+    "explain": "イベント会場販売",
+    "prise": 1200
+  },
+  {
+    "name": "いさぎ",
+    "count": 1,
+    "imageUrl": "/items/いさぎ.png",
+    "icon": "FaCircle",
+    "prise": 100,
+    "explain": "",
+    "acquisitionDate": "2025-03-31"
+  },
+  {
+    "name": "いさぎ2",
+    "count": 1,
+    "imageUrl": "/items/いさぎ (1).png",
+    "icon": "FaCircle",
+    "prise": 1,
+    "explain": "",
+    "acquisitionDate": "2025-03-31"
+  }
+]
