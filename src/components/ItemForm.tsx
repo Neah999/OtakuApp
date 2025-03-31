@@ -4,6 +4,9 @@ import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { Item } from "@/app/page";
 import { iconMap } from "@/data/iconMap";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { format, parseISO } from "date-fns";
 
 type Props = {
   mode: "new" | "edit";
@@ -18,6 +21,8 @@ export default function ItemForm({ mode }: Props) {
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [selectedFileName, setSelectedFileName] = useState<string>("");
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
+
+  const today = new Date().toISOString().slice(0, 10);
 
   useEffect(() => {
     if (mode === "edit" && id) {
@@ -35,13 +40,14 @@ export default function ItemForm({ mode }: Props) {
       // 新規作成の初期値
       setItem({
         name: "",
-        count: 0,
+        count: null,
         imageUrl: "",
         icon: "FaCircle",
-        prise: 0,
+        prise: null,
         explain: "",
         acquisitionDate: "",
       });
+
     }
   }, [mode, id]);
 
@@ -68,25 +74,23 @@ export default function ItemForm({ mode }: Props) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-  
+
     if (!item?.name.trim()) {
       alert("名前は必須です！");
       return;
     }
-  
-    // FormData を作成
+
     const formData = new FormData();
     formData.append("item", JSON.stringify(item));
     if (selectedFile) {
       formData.append("image", selectedFile);
     }
-  
+
     const response = await fetch("/api/save", {
       method: "POST",
-      // Content-Type ヘッダーは自動的に設定されるので削除
       body: formData,
     });
-  
+
     if (response.ok) {
       alert("保存しました！");
       router.push("/");
@@ -96,6 +100,10 @@ export default function ItemForm({ mode }: Props) {
   };
 
   if (!item) return <div>読み込み中...</div>;
+
+  const isEdited = (field: keyof Item, defaultValue: any) => {
+    return item[field] !== defaultValue;
+  };
 
   return (
     <main className="p-4 max-w-xl mx-auto bg-white text-black">
@@ -109,19 +117,25 @@ export default function ItemForm({ mode }: Props) {
             value={item.name}
             onChange={handleChange}
             required
-            className="w-full border border-gray-300 rounded p-2 bg-blue-50"
+            className="w-full border border-gray-300 rounded p-2 bg-blue-50 text-black"
           />
         </div>
 
         <div>
           <label className="block text-sm">個数</label>
           <input
-            type="text"
+            type="number"
             name="count"
-            inputMode="numeric"
-            value={item.count}
-            onChange={handleChange}
-            className="w-full border border-gray-300 rounded p-2 bg-blue-50"
+            min="1"
+            value={item.count === null || item.count === undefined ? "" : item.count}
+            onChange={(e) => {
+              const value = e.target.value === "" ? null : Number(e.target.value);
+              setItem({ ...item, count: value });
+            }}
+            placeholder="1"
+            className={`w-full border border-gray-300 rounded p-2 bg-blue-50 ${
+              item.count === null || item.count === undefined ? "text-gray-500" : "text-black"
+            }`}
           />
         </div>
 
@@ -131,12 +145,16 @@ export default function ItemForm({ mode }: Props) {
             type="text"
             name="prise"
             inputMode="numeric"
-            value={item.prise?.toLocaleString() || ""}
+            value={item.prise === null || item.prise === undefined ? "" : `¥${item.prise.toLocaleString()}`}
             onChange={(e) => {
-              const numeric = Number(e.target.value.replace(/,/g, ""));
+              const stripped = e.target.value.replace(/[^\d]/g, "");
+              const numeric = stripped ? Number(stripped) : null;
               setItem({ ...item, prise: numeric });
             }}
-            className="w-full border border-gray-300 rounded p-2 bg-blue-50"
+            placeholder="¥100"
+            className={`w-full border border-gray-300 rounded p-2 bg-blue-50 ${
+              item.prise === null || item.prise === undefined ? "text-gray-500" : "text-black"
+            }`}
           />
         </div>
 
@@ -146,18 +164,26 @@ export default function ItemForm({ mode }: Props) {
             name="explain"
             value={item.explain || ""}
             onChange={handleChange}
-            className="w-full border border-gray-300 rounded p-2 bg-blue-50"
+            className="w-full border border-gray-300 rounded p-2 bg-blue-50 text-black"
           />
         </div>
 
         <div>
           <label className="block text-sm">取得日</label>
-          <input
-            type="date"
-            name="acquisitionDate"
-            value={item.acquisitionDate || ""}
-            onChange={handleChange}
-            className="w-full border border-gray-300 rounded p-2 bg-blue-50"
+          <DatePicker
+            selected={item.acquisitionDate ? parseISO(item.acquisitionDate) : null}
+            onChange={(date: Date | null) => {
+              setItem({
+                ...item,
+                acquisitionDate: date ? format(date, "yyyy-MM-dd") : "",
+              });
+            }}
+            placeholderText="取得日を選択"
+            className={`w-full border border-gray-300 rounded p-2 bg-blue-50 ${
+              item.acquisitionDate ? "text-black" : "text-gray-500"
+            }`}
+            dateFormat="yyyy-MM-dd"
+            isClearable
           />
         </div>
 
@@ -193,6 +219,7 @@ export default function ItemForm({ mode }: Props) {
             </div>
           </div>
         </div>
+
         <div className="flex gap-2">
           <button
             type="button"

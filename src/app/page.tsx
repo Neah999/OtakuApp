@@ -9,12 +9,12 @@ import { Item } from "./page";
 
 export type Item = {
   name: string;
-  count: number;
+  count: number | null;
   imageUrl: string;
   icon: string;
-  acquisitionDate?: string;
-  explain?: string;
-  prise?: number;
+  prise: number | null;
+  explain: string;
+  acquisitionDate: string;
 };
 
 export default function HomePage() {
