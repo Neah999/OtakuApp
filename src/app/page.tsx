@@ -80,7 +80,7 @@ export default function HomePage() {
           ))}
         </ul>
       ) : (
-        <div className="grid gap-4 grid-cols-[repeat(auto-fit,minmax(96px,1fr))]">
+        <div className="grid gap-4 grid-cols-[repeat(auto-fit,minmax(120px,1fr))] justify-items-center">
           {items.map((item, i) => (
             <Link key={i} href={`/edit/${i}`} className="flex flex-col items-center">
               <ItemCard {...item} />

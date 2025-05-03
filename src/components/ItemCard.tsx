@@ -10,7 +10,7 @@ type Props = {
 
 export default function ItemCard({ name, count, imageUrl, icon: Icon }: Props) {
   return (
-    <div className="flex flex-col items-center w-24 sm:w-28">
+    <div className="flex flex-col items-center w-[120px] sm:w-[140px]">
       {/* 円形画像ラッパー（relative で重なり回避） */}
       <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full absolute z-10">
         <Image
