@@ -1,3 +1,62 @@
+# IDE関連ファイル
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
 
-# FVM Version Cache
-.fvm/
+# Android関連
+android/.gradle/
+android/build/
+android/app/build/
+android/local.properties
+android/app/src/main/assets/flutter_assets/ # Flutterのビルド成果物
+# もし 'frontend' ディレクトリ内に Android ビルドがある場合
+build/
+
+# iOS関連
+ios/.symlinks/
+ios/build/
+ios/*.xcworkspace
+ios/*.xcuserdata
+ios/.generated/ # Xcodeによって生成されるファイル
+
+# macOS関連
+macos/build/
+macos/.generated/
+
+# Linux関連
+linux/build/
+
+# Windows関連
+windows/build/
+
+# Web関連
+web/build/
+
+# Dart/Flutter関連
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+/build/ # Flutterのビルド成果物 (プロジェクトルートにある場合)
+.env # 環境変数ファイル（もし使用している場合）
+
+# その他のログや一時ファイル
+*.log
+*.DS_Store # macOSのシステムファイル
+Thumbs.db # Windowsのシステムファイル
+
+# テスト関連の生成物 (もしあれば)
+/coverage/
+
+# キーや証明書などの機密情報 (もしあれば)
+*.jks
+*.keystore
+*.properties
+*.env
+
+# プロジェクト固有の追加ファイル
+# 例えば、もし特定のファイルやディレクトリを無視したい場合はここに追加します。
+# my_secret_file.txt
+# /temp_data/
