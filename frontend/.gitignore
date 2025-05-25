@@ -7,8 +7,10 @@
 
 # Android関連
 android/.gradle/
+
 android/build/
-android/app/build/
+android/a
+pp/build/
 android/local.properties
 android/app/src/main/assets/flutter_assets/ # Flutterのビルド成果物
 # もし 'frontend' ディレクトリ内に Android ビルドがある場合

@@ -10,10 +10,10 @@ add:
 add-dev:
 	fvm flutter pub add $(word 2,$(MAKECMDGOALS)) -d
 
-clean:
+cl:
 	fvm flutter clean
 
-get:
+pg:
 	fvm flutter pub get
 
 outdated:
@@ -21,3 +21,9 @@ outdated:
 
 upgrade:
 	fvm flutter pub upgrade
+
+run:
+	fvm flutter run
+
+br:
+	fvm flutter pub run build_runner build --delete-conflicting-outputs
