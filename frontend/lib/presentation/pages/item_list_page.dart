@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/presentation/widgets/add_floating_action_button_widget.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../notifiers/item_notifiers.dart'; // パスを更新
 import 'package:intl/intl.dart'; // 日付フォーマット用
+import '../widgets/app_bar_widget.dart';
 
 class ItemListPage extends HookConsumerWidget {
   const ItemListPage({super.key});
@@ -12,25 +14,9 @@ class ItemListPage extends HookConsumerWidget {
     final itemsAsyncValue = ref.watch(itemsNotifierProvider);
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('アイテム一覧'),
-        centerTitle: true,
-        foregroundColor: Colors.black54,
-        elevation: 4,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            bottom: Radius.circular(16),
-          ),
-        ),
-          actions: [
-            IconButton(
-              icon: const Icon(Icons.grid_view), // グリッド表示アイコン
-              tooltip: 'グリッド表示に切り替える',
-              onPressed: () {
-                context.go('/grid'); // グリッド表示ページへ遷移
-              },
-            ),
-          ],
+      appBar: ItemAppBar(
+        type: AppBarType.list,
+        onActionPressed: () => context.go('/grid'),
       ),
       body: itemsAsyncValue.when(
         data: (items) {
@@ -46,7 +32,7 @@ class ItemListPage extends HookConsumerWidget {
                   ),
                   const SizedBox(height: 16),
                   Text(
-                    'アイテムがありません。',
+                    'グッズがありません。',
                     style: TextStyle(
                       fontSize: 18,
                       color: Colors.grey.shade600,
@@ -68,7 +54,7 @@ class ItemListPage extends HookConsumerWidget {
             onRefresh: () =>
                 ref.read(itemsNotifierProvider.notifier).refreshItems(),
             child: ListView.builder(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.fromLTRB(8, 8, 8, 64),
               itemCount: items.length,
               itemBuilder: (context, index) {
                 final item = items[index];
@@ -185,21 +171,8 @@ class ItemListPage extends HookConsumerWidget {
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (err, stack) => Center(child: Text('エラー: $err')),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          context.go('/add');
-        },
-        // icon: const Icon(Icons.add),
-        backgroundColor: Colors.blue.shade600,
-        foregroundColor: Colors.white,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30),
-        ),
-        elevation: 8,
-        // label: const Text(''),
-        child: const Icon(Icons.add),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+      floatingActionButton: AddFloatingActionButton(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
 

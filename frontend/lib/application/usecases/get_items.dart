@@ -3,7 +3,7 @@ import '../../domain/entities/item.dart';
 import '../../domain/repositories/item_repository.dart';
 import '../../infrastructure/repositories/item_repository_impl.dart'; // 実装をインポート
 
-// アイテムリストを取得するユースケース
+// グッズリストを取得するユースケース
 class GetItemsUseCase {
   final ItemRepository _repository;
 

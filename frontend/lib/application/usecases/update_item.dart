@@ -3,7 +3,7 @@ import '../../domain/entities/item.dart';
 import '../../domain/repositories/item_repository.dart';
 import '../../infrastructure/repositories/item_repository_impl.dart'; // 実装をインポート
 
-// アイテムを更新するユースケース
+// グッズを更新するユースケース
 class UpdateItemUseCase {
   final ItemRepository _repository;
 

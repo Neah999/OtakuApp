@@ -7,7 +7,7 @@ import '../../application/usecases/delete_item.dart';
 
 part 'item_notifiers.g.dart';
 
-// アイテムリストの状態を管理するAsyncNotifierProvider
+// グッズリストの状態を管理するAsyncNotifierProvider
 @riverpod
 class ItemsNotifier extends _$ItemsNotifier {
   @override

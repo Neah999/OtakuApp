@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../domain/entities/item.dart';
 import '../../presentation/notifiers/item_notifiers.dart';
 import 'package:uuid/uuid.dart'; // ユニークID生成用
+import '../widgets/app_bar_widget.dart';
 
 class ItemAddPage extends HookConsumerWidget {
   const ItemAddPage({super.key});
@@ -23,118 +24,138 @@ class ItemAddPage extends HookConsumerWidget {
     final formKey = useMemoized(() => GlobalKey<FormState>(), []);
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('アイテム追加'),
-        centerTitle: true,
-        backgroundColor: Colors.blue.shade700,
-        foregroundColor: Colors.white,
-        elevation: 4,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            bottom: Radius.circular(16),
-          ),
-        ),
+      appBar: ItemAppBar(
+        type: AppBarType.add,
+        onActionPressed: () => context.go('/'),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Form(
           key: formKey,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _buildTextField(
-                controller: nameController,
-                labelText: 'アイテム名',
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'アイテム名を入力してください';
-                  }
-                  return null;
-                },
-              ),
-              _buildTextField(
-                controller: quantityController,
-                labelText: '所持数',
-                keyboardType: TextInputType.number,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return '所持数を入力してください';
-                  }
-                  if (int.tryParse(value) == null) {
-                    return '有効な数値を入力してください';
-                  }
-                  return null;
-                },
-              ),
-              _buildTextField(
-                controller: imageUrlController,
-                labelText: '画像URL',
-                keyboardType: TextInputType.url,
-              ),
-              _buildTextField(
-                controller: priceController,
-                labelText: '価格',
-                keyboardType: TextInputType.number,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return '価格を入力してください';
-                  }
-                  if (int.tryParse(value) == null) {
-                    return '有効な数値を入力してください';
-                  }
-                  return null;
-                },
-              ),
-              _buildTextField(
-                controller: descriptionController,
-                labelText: '説明',
-                maxLines: 3,
-              ),
-              const SizedBox(height: 16),
-              _buildDateField(context, acquisitionDate),
-              const SizedBox(height: 16),
-              _buildFavoriteSwitch(isFavorite),
-              const SizedBox(height: 32),
-              Center(
-                child: ElevatedButton.icon(
-                  onPressed: () async {
-                    if (formKey.currentState!.validate()) {
-                      final newItem = Item(
-                        id: const Uuid().v4(), // 新規追加時は新しいID
-                        name: nameController.text,
-                        quantity: int.parse(quantityController.text),
-                        imageUrl: imageUrlController.text.isEmpty ? null : imageUrlController.text,
-                        isFavorite: isFavorite.value,
-                        price: int.parse(priceController.text),
-                        description: descriptionController.text.isEmpty ? null : descriptionController.text,
-                        acquisitionDate: acquisitionDate.value,
-                      );
-
-                      await ref.read(itemsNotifierProvider.notifier).addItem(newItem);
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text('${newItem.name}を追加しました。')),
-                      );
-                      context.go('/'); // 一覧画面に戻る
-                    }
-                  },
-                  icon: const Icon(Icons.add),
-                  label: const Text('アイテムを追加'),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.blue.shade600,
-                    foregroundColor: Colors.white,
-                    padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
-                    textStyle: const TextStyle(fontSize: 18),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                    elevation: 8,
-                  ),
-                ),
-              ),
-            ],
-          ),
+          child: _buildTextFieldColumn(
+              nameController,
+              quantityController,
+              imageUrlController,
+              priceController,
+              descriptionController,
+              context,
+              acquisitionDate,
+              isFavorite,
+              formKey,
+              ref),
         ),
       ),
+    );
+  }
+
+  Column _buildTextFieldColumn(
+      TextEditingController nameController,
+      TextEditingController quantityController,
+      TextEditingController imageUrlController,
+      TextEditingController priceController,
+      TextEditingController descriptionController,
+      BuildContext context,
+      ValueNotifier<DateTime> acquisitionDate,
+      ValueNotifier<bool> isFavorite,
+      GlobalKey<FormState> formKey,
+      WidgetRef ref) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        _buildTextField(
+          controller: nameController,
+          labelText: 'グッズ名',
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return 'グッズ名を入力してください';
+            }
+            return null;
+          },
+        ),
+        _buildTextField(
+          controller: quantityController,
+          labelText: '所持数',
+          keyboardType: TextInputType.number,
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return '所持数を入力してください';
+            }
+            if (int.tryParse(value) == null) {
+              return '有効な数値を入力してください';
+            }
+            return null;
+          },
+        ),
+        _buildTextField(
+          controller: imageUrlController,
+          labelText: '画像URL',
+          keyboardType: TextInputType.url,
+        ),
+        _buildTextField(
+          controller: priceController,
+          labelText: '価格',
+          keyboardType: TextInputType.number,
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return '価格を入力してください';
+            }
+            if (int.tryParse(value) == null) {
+              return '有効な数値を入力してください';
+            }
+            return null;
+          },
+        ),
+        _buildTextField(
+          controller: descriptionController,
+          labelText: '説明',
+          maxLines: 3,
+        ),
+        const SizedBox(height: 16),
+        _buildDateField(context, acquisitionDate),
+        const SizedBox(height: 16),
+        _buildFavoriteSwitch(isFavorite),
+        const SizedBox(height: 32),
+        Center(
+          child: ElevatedButton.icon(
+            onPressed: () async {
+              if (formKey.currentState!.validate()) {
+                final newItem = Item(
+                  id: const Uuid().v4(), // 新規追加時は新しいID
+                  name: nameController.text,
+                  quantity: int.parse(quantityController.text),
+                  imageUrl: imageUrlController.text.isEmpty
+                      ? null
+                      : imageUrlController.text,
+                  isFavorite: isFavorite.value,
+                  price: int.parse(priceController.text),
+                  description: descriptionController.text.isEmpty
+                      ? null
+                      : descriptionController.text,
+                  acquisitionDate: acquisitionDate.value,
+                );
+
+                await ref.read(itemsNotifierProvider.notifier).addItem(newItem);
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text('${newItem.name}を追加しました。')),
+                );
+                context.go('/'); // 一覧画面に戻る
+              }
+            },
+            icon: const Icon(Icons.add),
+            label: const Text('グッズを追加'),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.blue.shade600,
+              foregroundColor: Colors.white,
+              padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+              textStyle: const TextStyle(fontSize: 18),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(30),
+              ),
+              elevation: 8,
+            ),
+          ),
+        ),
+      ],
     );
   }
 
@@ -168,13 +189,17 @@ class ItemAddPage extends HookConsumerWidget {
     );
   }
 
-  Widget _buildDateField(BuildContext context, ValueNotifier<DateTime> dateNotifier) {
+  Widget _buildDateField(
+      BuildContext context, ValueNotifier<DateTime> dateNotifier) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           '取得日時:',
-          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.blueGrey.shade700),
+          style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: Colors.blueGrey.shade700),
         ),
         const SizedBox(height: 8),
         InkWell(
@@ -235,7 +260,10 @@ class ItemAddPage extends HookConsumerWidget {
       children: [
         Text(
           'お気に入り:',
-          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.blueGrey.shade700),
+          style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: Colors.blueGrey.shade700),
         ),
         Switch(
           value: isFavoriteNotifier.value,

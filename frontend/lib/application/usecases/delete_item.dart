@@ -2,7 +2,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../domain/repositories/item_repository.dart';
 import '../../infrastructure/repositories/item_repository_impl.dart'; // 実装をインポート
 
-// アイテムを削除するユースケース
+// グッズを削除するユースケース
 class DeleteItemUseCase {
   final ItemRepository _repository;
 

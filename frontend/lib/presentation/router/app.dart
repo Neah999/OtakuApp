@@ -12,7 +12,7 @@ class App extends HookConsumerWidget {
     final router = ref.watch(goRouterProvider);
 
     return MaterialApp.router(
-      title: 'アイテム管理アプリ',
+      title: 'グッズ管理アプリ',
       theme: AppTheme.lightTheme,
       useInheritedMediaQuery: true,
       locale: DevicePreview.locale(context),

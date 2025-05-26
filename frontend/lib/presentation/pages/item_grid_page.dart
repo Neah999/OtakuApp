@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/domain/entities/item.dart';
+import 'package:frontend/presentation/widgets/add_floating_action_button_widget.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../notifiers/item_notifiers.dart'; // パスを更新
+import '../widgets/app_bar_widget.dart';
 
 class ItemGridPage extends HookConsumerWidget {
   const ItemGridPage({super.key});
@@ -12,20 +14,9 @@ class ItemGridPage extends HookConsumerWidget {
     final itemsAsyncValue = ref.watch(itemsNotifierProvider);
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('アイテム一覧 (グリッド)'), // タイトル
-        centerTitle: true,
-        foregroundColor: Colors.black54,
-        elevation: 4,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.list), // リスト表示アイコン
-            tooltip: 'リスト表示に切り替える',
-            onPressed: () {
-              context.go('/'); // リスト表示ページへ遷移
-            },
-          ),
-        ],
+      appBar: ItemAppBar(
+        type: AppBarType.grid,
+        onActionPressed: () => context.go('/'),
       ),
       body: itemsAsyncValue.when(
         data: (items) {
@@ -41,7 +32,7 @@ class ItemGridPage extends HookConsumerWidget {
                   ),
                   const SizedBox(height: 16),
                   Text(
-                    'アイテムがありません。',
+                    'グッズがありません。',
                     style: TextStyle(
                       fontSize: 18,
                       color: Colors.grey.shade600,
@@ -60,14 +51,15 @@ class ItemGridPage extends HookConsumerWidget {
             );
           }
           return RefreshIndicator(
-            onRefresh: () => ref.read(itemsNotifierProvider.notifier).refreshItems(),
+            onRefresh: () =>
+                ref.read(itemsNotifierProvider.notifier).refreshItems(),
             child: GridView.builder(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.fromLTRB(8, 8, 8, 64),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 4, // 3列で表示
                 crossAxisSpacing: 8.0, // 横方向のスペース
                 mainAxisSpacing: 8.0, // 縦方向のスペース
-                childAspectRatio: 0.9, // アイテムの縦横比
+                childAspectRatio: 0.9, // グッズの縦横比
               ),
               itemCount: items.length,
               itemBuilder: (context, index) {
@@ -80,21 +72,8 @@ class ItemGridPage extends HookConsumerWidget {
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (err, stack) => Center(child: Text('エラー: $err')),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          context.go('/add');
-        },
-        // icon: const Icon(Icons.add),
-        backgroundColor: Colors.blue.shade600,
-        foregroundColor: Colors.white,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30),
-        ),
-        elevation: 8,
-        // label: const Text(''),
-        child: const Icon(Icons.add),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+      floatingActionButton: AddFloatingActionButton(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
 }
@@ -124,11 +103,13 @@ class ItemWidget extends StatelessWidget {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(8),
                     child: Image.network(
-                      item.imageUrl ?? 'https://placehold.co/200x200/E0E0E0/808080?text=No+Image',
+                      item.imageUrl ??
+                          'https://placehold.co/200x200/E0E0E0/808080?text=No+Image',
                       fit: BoxFit.cover,
                       errorBuilder: (context, error, stackTrace) => Container(
                         color: Colors.grey.shade300,
-                        child: Icon(Icons.broken_image, color: Colors.grey.shade600),
+                        child: Icon(Icons.broken_image,
+                            color: Colors.grey.shade600),
                       ),
                     ),
                   ),
@@ -137,7 +118,8 @@ class ItemWidget extends StatelessWidget {
                   top: 0,
                   right: 0,
                   child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                     decoration: BoxDecoration(
                       color: Colors.black.withOpacity(0.6),
                       borderRadius: BorderRadius.circular(8),

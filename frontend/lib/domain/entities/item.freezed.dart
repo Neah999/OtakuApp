@@ -21,7 +21,7 @@ Item _$ItemFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Item {
   String get id => throw _privateConstructorUsedError; // ユニークなID
-  String get name => throw _privateConstructorUsedError; // アイテム名
+  String get name => throw _privateConstructorUsedError; // グッズ名
   int get quantity => throw _privateConstructorUsedError; // 個数
   String? get imageUrl => throw _privateConstructorUsedError; // 画像URL
   bool get isFavorite => throw _privateConstructorUsedError; // お気に入り状態
@@ -212,7 +212,7 @@ class _$ItemImpl with DiagnosticableTreeMixin implements _Item {
 // ユニークなID
   @override
   final String name;
-// アイテム名
+// グッズ名
   @override
   final int quantity;
 // 個数
@@ -309,7 +309,7 @@ abstract class _Item implements Item {
   @override
   String get id; // ユニークなID
   @override
-  String get name; // アイテム名
+  String get name; // グッズ名
   @override
   int get quantity; // 個数
   @override

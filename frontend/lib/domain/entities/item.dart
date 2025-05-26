@@ -8,7 +8,7 @@ part 'item.g.dart';
 class Item with _$Item {
   const factory Item({
     required String id, // ユニークなID
-    required String name, // アイテム名
+    required String name, // グッズ名
     required int quantity, // 個数
     String? imageUrl, // 画像URL
     @Default(false) bool isFavorite, // お気に入り状態
