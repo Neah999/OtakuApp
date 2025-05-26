@@ -25,5 +25,8 @@ upgrade:
 run:
 	fvm flutter run
 
+runch:
+	fvm flutter run -d chrome
+	
 br:
 	fvm flutter pub run build_runner build --delete-conflicting-outputs
