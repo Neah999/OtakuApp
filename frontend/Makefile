@@ -25,7 +25,7 @@ upgrade:
 run:
 	fvm flutter run
 
-runch:
+ch:
 	fvm flutter run -d chrome
 	
 br:

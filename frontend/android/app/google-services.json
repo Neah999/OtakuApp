@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "922244716380",
+    "project_id": "otakuapp-8d8c6",
+    "storage_bucket": "otakuapp-8d8c6.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:922244716380:android:ff205ceca1f369664b5399",
+        "android_client_info": {
+          "package_name": "com.example.frontend"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "922244716380-imt148205av62l5qvqcnbrrqre40oa53.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDpbAxhFfA7fG7TkUhPY86RjN8vSTmNMGs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "922244716380-imt148205av62l5qvqcnbrrqre40oa53.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "922244716380-ehpf2cir9o6t1aq3ia7ahfsk4d9a9juh.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.frontend"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

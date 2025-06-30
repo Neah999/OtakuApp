@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>922244716380-ehpf2cir9o6t1aq3ia7ahfsk4d9a9juh.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.922244716380-ehpf2cir9o6t1aq3ia7ahfsk4d9a9juh</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDKmRphUzPTlEtIWlOc1Njm0gmdoV-6ok0</string>
+	<key>GCM_SENDER_ID</key>
+	<string>922244716380</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.frontend</string>
+	<key>PROJECT_ID</key>
+	<string>otakuapp-8d8c6</string>
+	<key>STORAGE_BUCKET</key>
+	<string>otakuapp-8d8c6.firebasestorage.app</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:922244716380:ios:0bb721c15bd6af894b5399</string>
+</dict>
+</plist>
